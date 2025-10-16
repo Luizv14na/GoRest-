@@ -1,0 +1,15 @@
+{
+  "name": "playwright-mark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {"db:init": "npx typeorm migration:run -d src/database/data-source.ts"},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.7.2"
+  }
+  
+}
