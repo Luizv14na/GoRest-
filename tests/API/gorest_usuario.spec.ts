@@ -1,3 +1,4 @@
+// Teste Tecnico 
 /**
  * Testes de API - GoRest (https://gorest.co.in)
  *
@@ -21,10 +22,10 @@ test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
     'Authorization': `Bearer c0d89818f07fb94a8822c209cf04364f637b1c05e8152f6769bf8574867e3bfb`, // substitua pelo seu token
   }
 
-  /**
-   * Cenário 1 - GET: Deve listar usuários existentes
-   * Valida se o endpoint retorna status 200 e um array de usuários.
-   */
+  
+  // Cenário 1 - GET: Deve listar usuários existentes
+  // Valida se o endpoint retorna status 200 e um array de usuários.
+   
   test('GET - Deve listar usuários existentes', async ({ request }) => {
     const response = await request.get(`${baseUrl}/users`, { headers })
     expect(response.status()).toBe(200)
@@ -36,10 +37,10 @@ test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
     console.log(`✅ ${data.length} usuários listados com sucesso.`)
   })
 
-  /**
-   * Cenário 2 - POST: Deve criar um novo usuário
-   * Armazena o ID do usuário para uso nos próximos testes.
-   */
+  
+  // Cenário 2 - POST: Deve criar um novo usuário
+  // Armazena o ID do usuário para uso nos próximos testes.
+   
   test('POST - Deve criar um novo usuário', async ({ request }) => {
     const newUser = {
       name: 'Luiz QA Playwright',
@@ -48,27 +49,27 @@ test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
       status: 'active',
     }
 
-    const response = await request.post(`${baseUrl}/users`, { headers, data: newUser });
+    const response = await request.post(`${baseUrl}/users`, { headers, data: newUser })
     expect(response.status()).toBe(201)
 
     const json = await response.json()
-    userId = json.id; // salva o id para os próximos testes
+    userId = json.id // salva o id para os próximos testes
 
     expect(json).toMatchObject({
       name: newUser.name,
       email: newUser.email,
       gender: newUser.gender,
       status: newUser.status,
-    });
+    })
 
     console.log(`✅ Usuário criado com ID: ${userId}`)
   })
 
-  /**
-   * Cenário 3 - GET: Deve buscar o usuário recém-criado pelo ID
-   */
+  
+  // Cenário 3 - GET: Deve buscar o usuário recém-criado pelo ID
+   
   test('GET - Deve buscar o usuário criado por ID', async ({ request }) => {
-    const response = await request.get(`${baseUrl}/users/${userId}`, { headers });
+    const response = await request.get(`${baseUrl}/users/${userId}`, { headers })
     expect(response.status()).toBe(200)
 
     const json = await response.json()
@@ -77,17 +78,17 @@ test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
 
     console.log(`✅ Usuário encontrado: ${json.name}`)
   })
-  /**
-   * Cenário 4 - PATCH: Deve atualizar o nome do usuário criado
-   * Usa o ID obtido no POST anterior.
-   */
+  
+  // Cenário 4 - PATCH: Deve atualizar o nome do usuário criado
+  // Usa o ID obtido no POST anterior.
+   
   test('PATCH - Deve atualizar o nome do usuário', async ({ request }) => {
     const updatedUser = { name: 'Luiz QA Atualizado' }
 
     const response = await request.patch(`${baseUrl}/users/${userId}`, {
       headers,
       data: updatedUser,
-    });
+    })
 
     expect(response.status()).toBe(200)
 
@@ -97,9 +98,8 @@ test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
     console.log(`✅ Usuário '${userId}' atualizado para: ${json.name}`)
   })
 test('DELETE - Deve excluir o usuário criado', async ({ request }) => {
-  const response = await request.delete(`https://gorest.co.in/public/v2/users/${userId}`, { headers });
+  const response = await request.delete(`https://gorest.co.in/public/v2/users/${userId}`, { headers })
 
-  // Correto: chama o método status()
   expect(response.status()).toBe(204)
 
   console.log(`✅ Usuário com ID ${userId} excluído com sucesso.`)
