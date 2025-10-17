@@ -11,7 +11,7 @@
  * Linguagem: TypeScript
  */
 
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
 test('Devo realizar fluxo de compra completo em e-commerce', async ({ page }) => {
 // 1. Acessar o site da loja
@@ -19,14 +19,14 @@ test('Devo realizar fluxo de compra completo em e-commerce', async ({ page }) =>
 //2. Realizar login na loja 
   await page.fill('#user-name', 'standard_user')
   await page.fill('#password', 'secret_sauce')
-  await page.click('#login-button');
+  await page.click('#login-button')
   
-  await expect(page).toHaveURL(/.*inventory.html/);
+  await expect(page).toHaveURL(/.*inventory.html/)
 // 3. Adicionar o produto ao carrinho
-  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-  await page.locator('[data-test="shopping-cart-link"]').click();
-  await page.locator('[data-test="checkout"]').click();
+  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+  await page.locator('[data-test="shopping-cart-link"]').click()
+  await page.locator('[data-test="checkout"]').click()
 // 4. Validar checkout  
-  await expect(page.getByText('Checkout: Your Information')).toBeVisible();
+  await expect(page.getByText('Checkout: Your Information')).toBeVisible()
 
 })
