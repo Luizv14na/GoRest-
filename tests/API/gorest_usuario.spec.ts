@@ -13,7 +13,7 @@
 
 import { test, expect } from '@playwright/test'
 
-test.describe.serial('GoRest API - Fluxo encadeado CRUD', () => {
+test.describe.serial('GoRest - Teste de usuários', () => {
   let userId: number // armazenará o ID do usuário criado
 
   const baseUrl = 'https://gorest.co.in/public/v2/'
