@@ -13,7 +13,7 @@
 
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('Devo realizar fluxo de compra completo em e-commerce', async ({ page }) => {
 // 1. Acessar o site da loja
   await page.goto('https://www.saucedemo.com/')
 //2. Realizar login na loja 
